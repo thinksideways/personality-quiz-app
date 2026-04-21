@@ -11,25 +11,25 @@ public partial class MainPage : ContentPage
 
     private List<Question> _allQuestions = new List<Question>
     {
-        new Question { Text = "I prefer a quiet night in over a big party.", IntrovertIfTrue = true },
-        new Question { Text = "I feel energized after spending time with a large group of people.", IntrovertIfTrue = false },
-        new Question { Text = "I usually think before I speak.", IntrovertIfTrue = true },
-        new Question { Text = "I enjoy being the center of attention.", IntrovertIfTrue = false },
-        new Question { Text = "I find small talk exhausting.", IntrovertIfTrue = true },
-        new Question { Text = "I often strike up conversations with strangers.", IntrovertIfTrue = false },
-        new Question { Text = "I prefer working alone rather than in a team.", IntrovertIfTrue = true },
-        new Question { Text = "I make decisions based on logic rather than emotion.", IntrovertIfTrue = true },
-        new Question { Text = "I am often described as a 'people person'.", IntrovertIfTrue = false },
-        new Question { Text = "I need alone time to recharge my batteries.", IntrovertIfTrue = true },
-        new Question { Text = "I love trying new and exciting activities.", IntrovertIfTrue = false },
-        new Question { Text = "I tend to have a small circle of close friends.", IntrovertIfTrue = true },
-        new Question { Text = "I am very comfortable in crowded places.", IntrovertIfTrue = false },
-        new Question { Text = "I enjoy deep, one-on-one conversations.", IntrovertIfTrue = true },
+        new Question { Text = "I prefer quiet nights in.", IntrovertIfTrue = true },
+        new Question { Text = "Large groups energize me.", IntrovertIfTrue = false },
+        new Question { Text = "I think before I speak.", IntrovertIfTrue = true },
+        new Question { Text = "I enjoy the spotlight.", IntrovertIfTrue = false },
+        new Question { Text = "Small talk exhausts me.", IntrovertIfTrue = true },
+        new Question { Text = "I talk to strangers often.", IntrovertIfTrue = false },
+        new Question { Text = "I prefer working alone.", IntrovertIfTrue = true },
+        new Question { Text = "I decide using logic.", IntrovertIfTrue = true },
+        new Question { Text = "I am a 'people person'.", IntrovertIfTrue = false },
+        new Question { Text = "I need alone time to recharge.", IntrovertIfTrue = true },
+        new Question { Text = "I love trying new things.", IntrovertIfTrue = false },
+        new Question { Text = "I have a small friend circle.", IntrovertIfTrue = true },
+        new Question { Text = "I am comfortable in crowds.", IntrovertIfTrue = false },
+        new Question { Text = "I enjoy deep conversations.", IntrovertIfTrue = true },
         new Question { Text = "I often act on impulse.", IntrovertIfTrue = false },
         new Question { Text = "I am a good listener.", IntrovertIfTrue = true },
         new Question { Text = "I enjoy public speaking.", IntrovertIfTrue = false },
-        new Question { Text = "I prefer to plan things out rather than being spontaneous.", IntrovertIfTrue = true },
-        new Question { Text = "I find it easy to express my feelings to others.", IntrovertIfTrue = false },
+        new Question { Text = "I prefer planning things out.", IntrovertIfTrue = true },
+        new Question { Text = "I express feelings easily.", IntrovertIfTrue = false },
         new Question { Text = "I value my privacy highly.", IntrovertIfTrue = true }
     };
 
@@ -97,8 +97,8 @@ public partial class MainPage : ContentPage
         StartBtn.Text = "Restart Quiz";
         
         string result = _introvertScore >= 3 
-            ? "You are an Introvert! You find strength in solitude and deep reflection." 
-            : "You are an Extrovert! You thrive on social energy and outward action.";
+            ? "Introvert: You enjoy solitude." 
+            : "Extrovert: You thrive on energy.";
             
         QuestionLabel.Text = result;
     }

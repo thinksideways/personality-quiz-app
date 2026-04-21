@@ -3,41 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="personality_quiz.MainPage">
 
-    <Grid RowDefinitions="*, Auto, Auto" RowSpacing="30" Padding="0,0,0,60">
+    <Grid RowDefinitions="0.5*, 0.5*">
+        <!-- Image occupies the top half and centered -->
         <Image
             Source="glowing_head.png"
-            Aspect="AspectFill"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"
+            Aspect="AspectFit"
+            Margin="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
             SemanticProperties.Description="glowing head" />
 
-        <Label
-            x:Name="QuestionLabel"
-            Grid.Row="1"
-            Text="What's your personality type?"
-            Style="{StaticResource Headline}"
-            Margin="30,0"
-            SemanticProperties.HeadingLevel="Level1" />
+        <!-- Quiz UI occupies the bottom half -->
+        <Grid Grid.Row="1" RowDefinitions="*, Auto" Padding="30" RowSpacing="20">
+            <Label
+                x:Name="QuestionLabel"
+                Text="What's your personality type?"
+                Style="{StaticResource Headline}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1" />
 
-        <VerticalStackLayout Grid.Row="2" Spacing="15" Margin="30,0">
-            <Button
-                x:Name="StartBtn"
-                Text="Start" 
-                SemanticProperties.Hint="Starts the personality quiz"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+            <VerticalStackLayout Grid.Row="1" Spacing="15" Padding="0,0,0,20">
+                <Button
+                    x:Name="StartBtn"
+                    Text="Start" 
+                    SemanticProperties.Hint="Starts the personality quiz"
+                    Clicked="OnCounterClicked"
+                    HorizontalOptions="Fill" />
 
-            <HorizontalStackLayout x:Name="QuizButtons" IsVisible="False" Spacing="20" HorizontalOptions="Center">
-                <Button
-                    Text="True"
-                    Clicked="OnTrueClicked"
-                    WidthRequest="150" />
-                <Button
-                    Text="False"
-                    Clicked="OnFalseClicked"
-                    WidthRequest="150" />
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
+                <HorizontalStackLayout x:Name="QuizButtons" IsVisible="False" Spacing="20" HorizontalOptions="Center">
+                    <Button
+                        Text="True"
+                        Clicked="OnTrueClicked"
+                        WidthRequest="140" />
+                    <Button
+                        Text="False"
+                        Clicked="OnFalseClicked"
+                        WidthRequest="140" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
     </Grid>
 
 </ContentPage>
