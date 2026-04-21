@@ -66,7 +66,13 @@ public partial class MainPage : ContentPage
     {
         if (_currentQuestionIndex < _quizQuestions.Count)
         {
-            QuestionLabel.Text = _quizQuestions[_currentQuestionIndex].Text;
+            var currentQuestion = _quizQuestions[_currentQuestionIndex];
+            QuestionLabel.Text = currentQuestion.Text;
+            
+            // Swap images based on the question's trait
+            QuizImage.Source = currentQuestion.IntrovertIfTrue 
+                ? "glowing_introvert_head.png" 
+                : "glowing_head.png";
         }
         else
         {
@@ -95,10 +101,14 @@ public partial class MainPage : ContentPage
         StartBtn.IsVisible = true;
         StartBtn.Text = "Restart Quiz";
         
-        string result = _introvertScore >= 3 
+        bool isIntrovert = _introvertScore >= 3;
+        
+        QuizImage.Source = isIntrovert 
+            ? "glowing_introvert_head.png" 
+            : "glowing_head.png";
+            
+        QuestionLabel.Text = isIntrovert 
             ? "Introvert: You enjoy solitude." 
             : "Extrovert: You thrive on energy.";
-            
-        QuestionLabel.Text = result;
     }
 }

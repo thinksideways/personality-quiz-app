@@ -6,6 +6,7 @@
     <Grid RowDefinitions="0.5*, 0.5*">
         <!-- Image occupies the top half and centered -->
         <Image
+            x:Name="QuizImage"
             Source="glowing_head.png"
             Aspect="AspectFit"
             Margin="0"
