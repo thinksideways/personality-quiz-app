@@ -12,20 +12,32 @@
             SemanticProperties.Description="glowing head" />
 
         <Label
+            x:Name="QuestionLabel"
             Grid.Row="1"
             Text="What's your personality type?"
             Style="{StaticResource Headline}"
             Margin="30,0"
             SemanticProperties.HeadingLevel="Level1" />
 
-        <Button
-            Grid.Row="2"
-            x:Name="CounterBtn"
-            Text="Start" 
-            Margin="30,0"
-            SemanticProperties.Hint="Starts the personality quiz"
-            Clicked="OnCounterClicked"
-            HorizontalOptions="Fill" />
+        <VerticalStackLayout Grid.Row="2" Spacing="15" Margin="30,0">
+            <Button
+                x:Name="StartBtn"
+                Text="Start" 
+                SemanticProperties.Hint="Starts the personality quiz"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill" />
+
+            <HorizontalStackLayout x:Name="QuizButtons" IsVisible="False" Spacing="20" HorizontalOptions="Center">
+                <Button
+                    Text="True"
+                    Clicked="OnTrueClicked"
+                    WidthRequest="150" />
+                <Button
+                    Text="False"
+                    Clicked="OnFalseClicked"
+                    WidthRequest="150" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
     </Grid>
 
 </ContentPage>
