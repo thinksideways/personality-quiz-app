@@ -1,0 +1,39 @@
+## Visual Studio
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.suo.tmp
+
+## Visual Studio Code
+.vscode/
+.history/
+*.code-workspace
+
+## macOS
+.DS_Store
+
+## .NET
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+## Android
+*.ap_
+*.apk
+*.dex
+*.keystore
+!public.keystore
+
+## iOS/MacCatalyst
+*.app
+*.app.dSYM/
+*.ipa
+*.ext.dSYM/
+
+## Publishing
+publish/

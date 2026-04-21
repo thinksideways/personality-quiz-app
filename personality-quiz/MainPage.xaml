@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="personality_quiz.MainPage">
+
+    <Grid RowDefinitions="*, Auto, Auto" RowSpacing="30" Padding="0,0,0,60">
+        <Image
+            Source="glowing_head.png"
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            SemanticProperties.Description="glowing head" />
+
+        <Label
+            Grid.Row="1"
+            Text="What's your personality type?"
+            Style="{StaticResource Headline}"
+            Margin="30,0"
+            SemanticProperties.HeadingLevel="Level1" />
+
+        <Button
+            Grid.Row="2"
+            x:Name="CounterBtn"
+            Text="Start" 
+            Margin="30,0"
+            SemanticProperties.Hint="Starts the personality quiz"
+            Clicked="OnCounterClicked"
+            HorizontalOptions="Fill" />
+    </Grid>
+
+</ContentPage>
