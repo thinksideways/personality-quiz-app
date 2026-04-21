@@ -15,6 +15,11 @@
 
         <!-- Quiz UI occupies the bottom half -->
         <Grid Grid.Row="1" RowDefinitions="*, Auto" Padding="30" RowSpacing="20">
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped" />
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped" />
+            </Grid.GestureRecognizers>
+
             <Label
                 x:Name="QuestionLabel"
                 Text="What's your personality type?"
@@ -31,16 +36,15 @@
                     Clicked="OnCounterClicked"
                     HorizontalOptions="Fill" />
 
-                <HorizontalStackLayout x:Name="QuizButtons" IsVisible="False" Spacing="20" HorizontalOptions="Center">
-                    <Button
-                        Text="True"
-                        Clicked="OnTrueClicked"
-                        WidthRequest="140" />
-                    <Button
-                        Text="False"
-                        Clicked="OnFalseClicked"
-                        WidthRequest="140" />
-                </HorizontalStackLayout>
+                <!-- Hint Label to guide the user since buttons are gone -->
+                <Label 
+                    x:Name="SwipeHint"
+                    Text="Swipe Left (False) or Right (True)"
+                    IsVisible="False"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource SubHeadline}"
+                    FontSize="16"
+                    TextColor="{StaticResource Gray400}" />
             </VerticalStackLayout>
         </Grid>
     </Grid>

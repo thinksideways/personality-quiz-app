@@ -36,6 +36,7 @@ public partial class MainPage : ContentPage
     private List<Question> _quizQuestions = new List<Question>();
     private int _currentQuestionIndex = 0;
     private int _introvertScore = 0;
+    private bool _isQuizActive = false;
 
     public MainPage()
     {
@@ -53,9 +54,10 @@ public partial class MainPage : ContentPage
         _quizQuestions = _allQuestions.OrderBy(x => random.Next()).Take(5).ToList();
         _currentQuestionIndex = 0;
         _introvertScore = 0;
+        _isQuizActive = true;
         
         StartBtn.IsVisible = false;
-        QuizButtons.IsVisible = true;
+        SwipeHint.IsVisible = true;
         
         ShowNextQuestion();
     }
@@ -72,27 +74,24 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void OnTrueClicked(object sender, EventArgs e)
+    private void OnSwiped(object sender, SwipedEventArgs e)
     {
-        if (_quizQuestions[_currentQuestionIndex].IntrovertIfTrue)
-            _introvertScore++;
-            
-        _currentQuestionIndex++;
-        ShowNextQuestion();
-    }
+        if (!_isQuizActive) return;
 
-    private void OnFalseClicked(object sender, EventArgs e)
-    {
-        if (!_quizQuestions[_currentQuestionIndex].IntrovertIfTrue)
+        // Right = True, Left = False
+        bool userChoice = e.Direction == SwipeDirection.Right;
+
+        if (_quizQuestions[_currentQuestionIndex].IntrovertIfTrue == userChoice)
             _introvertScore++;
-            
+
         _currentQuestionIndex++;
         ShowNextQuestion();
     }
 
     private void ShowResults()
     {
-        QuizButtons.IsVisible = false;
+        _isQuizActive = false;
+        SwipeHint.IsVisible = false;
         StartBtn.IsVisible = true;
         StartBtn.Text = "Restart Quiz";
         
