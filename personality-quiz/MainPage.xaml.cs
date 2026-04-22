@@ -1,39 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using personality_quiz.Models;
 
 namespace personality_quiz;
 
 public partial class MainPage : ContentPage
 {
-    private class Question
-    {
-        public string Text { get; set; } = string.Empty;
-        // True = Introvert point, False = Extrovert point
-        public bool IntrovertIfTrue { get; set; }
-    }
-
-    private List<Question> _allQuestions = new List<Question>
-    {
-        new Question { Text = "I prefer quiet nights in.", IntrovertIfTrue = true },
-        new Question { Text = "Large groups energize me.", IntrovertIfTrue = false },
-        new Question { Text = "I think before I speak.", IntrovertIfTrue = true },
-        new Question { Text = "I enjoy the spotlight.", IntrovertIfTrue = false },
-        new Question { Text = "Small talk exhausts me.", IntrovertIfTrue = true },
-        new Question { Text = "I talk to strangers often.", IntrovertIfTrue = false },
-        new Question { Text = "I prefer working alone.", IntrovertIfTrue = true },
-        new Question { Text = "I decide using logic.", IntrovertIfTrue = true },
-        new Question { Text = "I am a 'people person'.", IntrovertIfTrue = false },
-        new Question { Text = "I need alone time to recharge.", IntrovertIfTrue = true },
-        new Question { Text = "I love trying new things.", IntrovertIfTrue = false },
-        new Question { Text = "I have a small friend circle.", IntrovertIfTrue = true },
-        new Question { Text = "I am comfortable in crowds.", IntrovertIfTrue = false },
-        new Question { Text = "I enjoy deep conversations.", IntrovertIfTrue = true },
-        new Question { Text = "I often act on impulse.", IntrovertIfTrue = false },
-        new Question { Text = "I am a good listener.", IntrovertIfTrue = true },
-        new Question { Text = "I enjoy public speaking.", IntrovertIfTrue = false },
-        new Question { Text = "I prefer planning things out.", IntrovertIfTrue = true },
-        new Question { Text = "I express feelings easily.", IntrovertIfTrue = false },
-        new Question { Text = "I value my privacy highly.", IntrovertIfTrue = true }
-    };
+    private Quiz _allQuestions = new Quiz();
 
     private List<string> _introvertHobbies = new List<string> { "Reading", "Solo Gaming", "Nature Walks", "Painting", "Baking" };
     private List<string> _extrovertHobbies = new List<string> { "Team Sports", "Public Speaking", "Group Fitness", "Concerts", "Hosting Events" };
