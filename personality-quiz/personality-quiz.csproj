@@ -29,7 +29,7 @@
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 
 		<!-- Display name -->
-		<ApplicationTitle>personality-quiz</ApplicationTitle>
+		<ApplicationTitle>Personality Quiz</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.personalityquiz</ApplicationId>
@@ -50,7 +50,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#000000" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#000000" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#000000" BaseSize="128,128" />
