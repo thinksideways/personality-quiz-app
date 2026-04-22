@@ -4,6 +4,10 @@
 
 This is a simple Maui application meant as the base for three Mobile Applications Development course labs.  It is a true or false based personality quiz and the individual lab versions (B, C, D) can be found via checking out the appropriate branches.
 
+## Demo
+![app demo on request](app-demo.gif)
+
+
 ## Coverage:
  * Module 3 Lab B
  * Module 3 Lab C
