@@ -53,13 +53,13 @@
                     x:Name="StartBtn"
                     Text="Start" 
                     SemanticProperties.Hint="Starts the personality quiz"
-                    Clicked="OnCounterClicked"
+                    Clicked="OnStartQuizTapped"
                     HorizontalOptions="Fill" />
 
                 <HorizontalStackLayout x:Name="ResultButtons" IsVisible="False" Spacing="20" HorizontalOptions="Center">
                     <Button
                         Text="Restart"
-                        Clicked="OnCounterClicked"
+                        Clicked="OnStartQuizTapped"
                         WidthRequest="140" />
                     <Button
                         Text="Home"

@@ -57,7 +57,7 @@ public partial class MainPage : ContentPage
         catch (OperationCanceledException) { }
     }
 
-    private void OnCounterClicked(object? sender, EventArgs e)
+    private void OnStartQuizTapped(object? sender, EventArgs e)
     {
         StartQuiz();
     }
