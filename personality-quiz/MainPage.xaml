@@ -1,31 +1,83 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="personality_quiz.MainPage">
 
-    <Grid RowDefinitions="*, Auto, Auto" RowSpacing="30" Padding="0,0,0,60">
-        <Image
-            Source="glowing_head.png"
-            Aspect="AspectFill"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"
-            SemanticProperties.Description="glowing head" />
+    <Grid RowDefinitions="0.5*, 0.5*">
+        <!-- Background Image area with two images for cross-fading -->
+        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+            <Image
+                x:Name="QuizImage"
+                Source="glowing_head.png"
+                Aspect="AspectFit"
+                Margin="0"
+                Opacity="1" />
+            <Image
+                x:Name="IntrovertImage"
+                Source="glowing_introvert_head.png"
+                Aspect="AspectFit"
+                Margin="0"
+                Opacity="0" />
+        </Grid>
 
-        <Label
-            Grid.Row="1"
-            Text="What's your personality type?"
-            Style="{StaticResource Headline}"
-            Margin="30,0"
-            SemanticProperties.HeadingLevel="Level1" />
+        <!-- Quiz UI occupies the bottom half -->
+        <Grid Grid.Row="1" RowDefinitions="*, Auto" Padding="30" RowSpacing="10">
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped" />
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped" />
+            </Grid.GestureRecognizers>
 
-        <Button
-            Grid.Row="2"
-            x:Name="CounterBtn"
-            Text="Start" 
-            Margin="30,0"
-            SemanticProperties.Hint="Starts the personality quiz"
-            Clicked="OnCounterClicked"
-            HorizontalOptions="Fill" />
+            <VerticalStackLayout VerticalOptions="Center" Spacing="10">
+                <Label
+                    x:Name="QuestionLabel"
+                    Text="What's your personality type?"
+                    Style="{StaticResource Headline}"
+                    HorizontalOptions="Center"
+                    SemanticProperties.HeadingLevel="Level1" />
+
+                <!-- Results List (only shown at end) -->
+                <VerticalStackLayout x:Name="ResultLayout" IsVisible="False" Spacing="5" HorizontalOptions="Center">
+                    <Label Text="Suggested Hobbies:" HorizontalOptions="Center" Style="{StaticResource SubHeadline}" FontSize="18" Margin="0,10,0,5" />
+                    <CollectionView ItemsSource="{Binding Hobbies}" HeightRequest="150" WidthRequest="250">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding .}" HorizontalOptions="Center" VerticalOptions="Center" Padding="5" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1" Spacing="15" Padding="0,0,0,10">
+                <Button
+                    x:Name="StartBtn"
+                    Text="Start" 
+                    SemanticProperties.Hint="Starts the personality quiz"
+                    Clicked="OnCounterClicked"
+                    HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout x:Name="ResultButtons" IsVisible="False" Spacing="20" HorizontalOptions="Center">
+                    <Button
+                        Text="Restart"
+                        Clicked="OnCounterClicked"
+                        WidthRequest="140" />
+                    <Button
+                        Text="Home"
+                        Clicked="OnHomeClicked"
+                        WidthRequest="140" />
+                </HorizontalStackLayout>
+
+                <!-- Hint Label to guide the user since buttons are gone -->
+                <Label 
+                    x:Name="SwipeHint"
+                    Text="Swipe Left (False) or Right (True)"
+                    IsVisible="False"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource SubHeadline}"
+                    FontSize="16"
+                    TextColor="{StaticResource EnergyGlow}" />
+            </VerticalStackLayout>
+        </Grid>
     </Grid>
 
 </ContentPage>
