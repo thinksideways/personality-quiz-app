@@ -4,6 +4,20 @@
              x:Class="personality_quiz.MainPage">
 
     <Grid RowDefinitions="0.5*, 0.5*">
+        <!-- Settings Cog -->
+        <ImageButton
+            Source="settings_cog.png"
+            HeightRequest="40"
+            WidthRequest="60"
+            BackgroundColor="Transparent"
+            HorizontalOptions="End"
+            VerticalOptions="Start"
+            Margin="20"
+            Padding="10"
+            Clicked="OnSettingsClicked"
+            ZIndex="1"
+            Aspect="AspectFit" />
+
         <!-- Background Image area with two images for cross-fading -->
         <Grid HorizontalOptions="Center" VerticalOptions="Center">
             <Image
@@ -64,6 +78,17 @@
                     <Button
                         Text="Home"
                         Clicked="OnHomeClicked"
+                        WidthRequest="140" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout x:Name="ButtonLayout" IsVisible="False" Spacing="20" HorizontalOptions="Center">
+                    <Button
+                        Text="False"
+                        Clicked="OnFalseClicked"
+                        WidthRequest="140" />
+                    <Button
+                        Text="True"
+                        Clicked="OnTrueClicked"
                         WidthRequest="140" />
                 </HorizontalStackLayout>
 

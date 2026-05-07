@@ -1,10 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using personality_quiz.Models;
+using personality_quiz.Services;
 
 namespace personality_quiz;
 
 public partial class MainPage : ContentPage
 {
+    private readonly DatabaseService _databaseService;
     private Quiz _allQuestions = new Quiz();
 
     private List<string> _introvertHobbies = new List<string> { "Reading", "Solo Gaming", "Nature Walks", "Painting", "Baking" };
@@ -16,11 +18,13 @@ public partial class MainPage : ContentPage
     private int _currentQuestionIndex = 0;
     private int _introvertScore = 0;
     private bool _isQuizActive = false;
+    private string _quizMode = "Swipe";
     private CancellationTokenSource? _animationCts;
 
-    public MainPage()
+    public MainPage(DatabaseService databaseService)
     {
         InitializeComponent();
+        _databaseService = databaseService;
         BindingContext = this;
         StartBackgroundAnimation();
     }
@@ -57,12 +61,17 @@ public partial class MainPage : ContentPage
         catch (OperationCanceledException) { }
     }
 
+    private async void OnSettingsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(SettingsPage));
+    }
+
     private void OnStartQuizTapped(object? sender, EventArgs e)
     {
         StartQuiz();
     }
 
-    private void StartQuiz()
+    private async void StartQuiz()
     {
         _isQuizActive = true;
         var random = new Random();
@@ -72,10 +81,22 @@ public partial class MainPage : ContentPage
         _isQuizActive = true;
         Hobbies.Clear();
         
+        _quizMode = await _databaseService.GetSettingAsync("QuizMode", "Swipe");
+
         StartBtn.IsVisible = false;
         ResultButtons.IsVisible = false;
-        SwipeHint.IsVisible = true;
         ResultLayout.IsVisible = false;
+
+        if (_quizMode == "Swipe")
+        {
+            SwipeHint.IsVisible = true;
+            ButtonLayout.IsVisible = false;
+        }
+        else
+        {
+            SwipeHint.IsVisible = false;
+            ButtonLayout.IsVisible = true;
+        }
         
         // Reset positions and ensure correct starting image state
         QuizImage.Scale = 1.0;
@@ -109,10 +130,25 @@ public partial class MainPage : ContentPage
 
     private void OnSwiped(object sender, SwipedEventArgs e)
     {
+        if (!_isQuizActive || _quizMode != "Swipe") return;
+
+        ProcessAnswer(e.Direction == SwipeDirection.Right);
+    }
+
+    private void OnTrueClicked(object sender, EventArgs e)
+    {
         if (!_isQuizActive) return;
+        ProcessAnswer(true);
+    }
 
-        bool userChoice = e.Direction == SwipeDirection.Right;
+    private void OnFalseClicked(object sender, EventArgs e)
+    {
+        if (!_isQuizActive) return;
+        ProcessAnswer(false);
+    }
 
+    private void ProcessAnswer(bool userChoice)
+    {
         if (_quizQuestions[_currentQuestionIndex].IntrovertIfTrue == userChoice)
             _introvertScore++;
 
@@ -124,6 +160,7 @@ public partial class MainPage : ContentPage
     {
         _isQuizActive = false;
         SwipeHint.IsVisible = false;
+        ButtonLayout.IsVisible = false;
         StartBtn.IsVisible = false;
         ResultButtons.IsVisible = true;
         ResultLayout.IsVisible = true;
